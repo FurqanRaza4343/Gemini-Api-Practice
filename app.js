@@ -1,3 +1,4 @@
+// import libraries and defined libaraiese here...
 const {
     GoogleGenerativeAI,
     HarmCategory,
@@ -6,8 +7,15 @@ const {
 const dialogflow = require('@google-cloud/dialogflow');
 const { WebhookClient, Payload } = require('dialogflow-fulfillment');
 const express = require("express");
+const { config } = require("dotenv");
 const MODEL_NAME = "gemini-1.5-gemini-flash-latest-latest";
-const API_KEY = "AIzaSyAwbaPAIzaSyAU5N8tdKT2a9kO8F3J90QG8gT9JgurB90";
+
+config({
+    path: "./.env"
+})
+
+// get Api key here..
+const API_KEY = process.env.API_KEY;
 
 async function runChat(queryText) {
     const genAI = new GoogleGenerativeAI(API_KEY);
